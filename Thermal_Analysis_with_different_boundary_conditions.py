@@ -322,29 +322,6 @@ for k in range(iterations):
 
             TempM[i, j] = (-1)*n/d
 
-'''
-            if (i >= 1 and i <= y_cells - 2) and (j >= 1 and j <= x_cells - 2):
-             # matrix ecluding boundary cells
-                TempM[i, j] = (wt[i, j, 0]*TempM[i+1,j] + wt[i,j,1]*TempM[i-1,j] + wt[i,j,2]*TempM[i,j+1] + wt[i,j,3]*TempM[i,j-1])*(-1)/wt[i,j,4]
-    # boundary cells
-            elif j == x_cells and i in range(1, y_cells - 1):  # east
-                TempM[i, j] = (wt[i, j, 0]*TempM[i+1,j] + wt[i,j,1]*TempM[i-1,j] + wt[i,j,2]*rb_t*2 + wt[i,j,3]*TempM[i,j-1])*(-1)/(wt[i,j,4] - wt[i,j,2])
-            elif i == 0 and j in range(1, x_cells - 1):  # south
-                TempM[i, j] = (wt[i, j, 0]*TempM[i+1,j] + wt[i,j,1]*bb_t*2 + wt[i,j,2]*TempM[i,j+1] + wt[i,j,3]*TempM[i,j-1])*(-1)/(wt[i,j,4] - wt[i,j,1])
-            elif i == y_cells and j in range(1, x_cells - 1):  # north
-                TempM[i, j] = (wt[i, j, 0]*tb_t*2 + wt[i,j,1]*TempM[i-1,j] + wt[i,j,2]*TempM[i,j+1] + wt[i,j,3]*TempM[i,j-1])*(-1)/(wt[i,j,4] - wt[i,j,0])
-            elif j == 0 and i in range(1, y_cells - 1):  # west
-                TempM[i, j] = (wt[i, j, 0]*TempM[i+1,j] + wt[i,j,1]*TempM[i-1,j] + wt[i,j,2]*TempM[i,j+1] + wt[i,j,3]*lb_t*2)*(-1)/(wt[i,j,4] - wt[i,j,3])
-    # corners
-            elif (i, j) == (0, 0):
-                TempM[i, j] = (wt[i, j, 0]*TempM[i+1,j] + wt[i,j,1]*bb_t*2 + wt[i,j,2]*TempM[i,j+1] + wt[i,j,3]*lb_t*2)*(-1)/(wt[i,j,4] - wt[i,j,3] - wt[i,j,1])            
-            elif (i, j) == (y_cells, x_cells):
-                TempM[i, j] = (wt[i, j, 0]*tb_t*2 + wt[i,j,1]*TempM[i-1,j] + wt[i,j,2]*rb_t*2 + wt[i,j,3]*TempM[i,j-1])*(-1)/(wt[i,j,4] - wt[i,j,0] - wt[i,j,2])
-            elif (i, j) == (0, x_cells):
-                TempM[i, j] = (wt[i, j, 0]*TempM[i+1,j] + wt[i,j,1]*bb_t*2 + wt[i,j,2]*rb_t*2 + wt[i,j,3]*TempM[i,j-1])*(-1)/(wt[i,j,4] - wt[i,j,2] - wt[i,j,1])
-            elif (i, j) == (y_cells, 0):
-                TempM[i, j] = (wt[i, j, 0]*tb_t*2 + wt[i,j,1]*TempM[i-1,j] + wt[i,j,2]*TempM[i,j+1] + wt[i,j,3]*lb_t*2)*(-1)/(wt[i,j,4] - wt[i,j,0] -  wt[i,j,3])
-'''
 print(TempM)
 
 ##---------------CFD CODE WORKS FOR SQUARE/RECTANGLE UNIFORM/NON-UNIFORM MESHES------------------##
@@ -369,6 +346,7 @@ for i in range(x_cells):
 plt.plot(x,tpy)
 plt.show()
 
+##---------------3d graph and contour works for squares only------------------## 
 #Plotting a contour
 xcc = np.empty(shape=(y_cells, x_cells))
 ycc = np.empty(shape=(y_cells, x_cells))
