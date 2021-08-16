@@ -19,7 +19,7 @@ def bc_n(boundary,i,j,wt,x,y):
         else: 
             d = dy
         n =  wt[i,j,boundary['wt_no']]*d*boundary['t']
-    elif boundary['name'] == 4:
+    elif boundary['type'] == 4:
         dx = x[j + 1] - x[j]
         dy = y[i + 1] - y[i]
         c = boundary['c']
@@ -28,7 +28,7 @@ def bc_n(boundary,i,j,wt,x,y):
             d = dx
         else: 
             d = dy
-        phi = c * To / ((1 / d) + (c / 2))
+        phi = (c * To * (-1)) / ((1 / d) - (c / 2))
         n = wt[i,j,boundary['wt_no']]*phi
     return n
 
@@ -42,7 +42,7 @@ def bc_d(boundary,i,j,wt,x,y):
         r = wt[i,j,boundary['wt_no']]
     elif boundary['type'] == 3:
         r = wt[i,j,boundary['wt_no']]
-    elif boundary['name'] == 4:
+    elif boundary['type'] == 4:
         dx = x[j + 1] - x[j]
         dy = y[i + 1] - y[i]
         c = boundary['c']
@@ -50,7 +50,7 @@ def bc_d(boundary,i,j,wt,x,y):
             d = dx
         else: 
             d = dy
-        epsilon = ((1 / d) - (c / 2)) / ((1 / d) + (c / 2))
+        epsilon = ((1 / d) + (c / 2)) / ((1 / d) - (c / 2))
         r = wt[i,j,boundary['wt_no']]*epsilon
     return r
 
@@ -358,7 +358,8 @@ for i in range(x_cells):
     for j in range(y_cells):
         ycc[i][j] = (y_coo[j+1] + y_coo[j])/2
 
-plt.contourf(ycc, xcc,TempM,cmap=plt.cm.jet)
+plt.contourf(ycc, xcc,TempM,colours = 'black')
+plt.contourf(ycc, xcc,TempM,40,cmap=plt.cm.jet)
 plt.show()
 
 #plotting 3d surface graph
@@ -367,4 +368,3 @@ axes = fig.gca(projection ='3d')
 axes.plot_surface(ycc, xcc, TempM, cmap=plt.cm.jet)
   
 plt.show()
-##---------------3d graph and contour works for squares only------------------## 
