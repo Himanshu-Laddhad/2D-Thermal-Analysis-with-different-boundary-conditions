@@ -47,8 +47,8 @@
       <li>Right boundary: Robbins Condition</li>
      </ul>
    <img src="https://user-images.githubusercontent.com/63182419/129669197-4b47f243-1ded-4f9e-b291-702971015e68.png">
-  <break>
-  <break>
+  <br>
+  <br>
 <footer>
   Countour and 3d surface plot are not available for rectangular meshes
 </footer>
