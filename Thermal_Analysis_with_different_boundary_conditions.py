@@ -2,6 +2,7 @@ import matplotlib as mt
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
+from numpy.ma.core import sqrt
 
 
 #to apply boundary condition to numerator of temperature of a cell
@@ -322,8 +323,19 @@ for k in range(iterations):
 
             TempM[i, j] = (-1)*n/d
 
-print(TempM)
+            if k == iterations - 2 :
+                TempM_old = np.copy(TempM)
 
+print(TempM, wt)
+
+TempM_old = np.multiply(TempM_old,TempM_old)
+TempM_new = np.multiply(TempM, TempM)
+sum_new = float(np.sum(TempM_new))/(i*j)
+sum_old = float(np.sum(TempM_old))/(i*j)
+rms_old = sqrt(sum_old)
+rms_new = sqrt(sum_new)
+residual = rms_new - rms_old
+print(residual)
 ##---------------CFD CODE WORKS FOR SQUARE/RECTANGLE UNIFORM/NON-UNIFORM MESHES------------------##
 
 #Variation of temperature in y direction for given value of x
@@ -368,3 +380,5 @@ axes = fig.gca(projection ='3d')
 axes.plot_surface(ycc, xcc, TempM, cmap=plt.cm.jet)
   
 plt.show()
+
+###  IMPORTANT :check code for robins condition again  ###
