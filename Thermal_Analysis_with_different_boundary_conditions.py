@@ -330,11 +330,11 @@ print(TempM, wt)
 
 TempM_old = np.multiply(TempM_old,TempM_old)
 TempM_new = np.multiply(TempM, TempM)
-sum_new = float(np.sum(TempM_new))/(i*j)
-sum_old = float(np.sum(TempM_old))/(i*j)
-rms_old = sqrt(sum_old)
-rms_new = sqrt(sum_new)
-residual = rms_new - rms_old
+sum_new = np.sum(TempM_new)/float((i*j))
+sum_old = np.sum(TempM_old)/float((i*j))
+rms_old = float(sqrt(sum_old))
+rms_new = float(sqrt(sum_new))
+residual = float(rms_new - rms_old)
 print(residual)
 ##---------------CFD CODE WORKS FOR SQUARE/RECTANGLE UNIFORM/NON-UNIFORM MESHES------------------##
 
